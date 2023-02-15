@@ -10,7 +10,8 @@ string_date = formatted_date.strftime('%Y-%m-%d')
 print(string_date)
 response = requests.get(url=f"{URL}{string_date}")
 soup = BeautifulSoup(response.text, 'html.parser')
-chart_results = soup.find_all('li', class_='o-chart-results-list__item')
+chart_results = soup.select('.chart-results-list li h3')
+songs_list = [song.text.strip() for song in chart_results]
+print(songs_list[0])
 
-print(songs_list)
 
